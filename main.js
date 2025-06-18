@@ -55,6 +55,10 @@ people.addEventListener('change', () => {
   const tips = (data.bill * (isCustom / 100)) / data.people;
   const sum = data.bill / data.people;
 
+  if (!tips && !sum) {
+    return;
+  }
+
   tipAmount.textContent = `$${tips.toFixed(2)}`;
   total.textContent = `$${sum.toFixed(2)}`;
 });
