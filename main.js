@@ -2,6 +2,7 @@ const form = document.getElementById('form');
 const people = document.getElementById('people');
 const custom = document.getElementById('custom');
 const list = document.getElementById('radio-list');
+const items = document.querySelectorAll('.form__radio-item');
 const tipAmount = document.getElementById('tip-amount');
 const total = document.getElementById('total');
 const inputs = document.querySelectorAll('input');
@@ -30,14 +31,20 @@ list.addEventListener('click', (e) => {
   const isChecked = list.querySelector('input:checked');
   if (target === custom && isChecked) {
     isChecked.removeAttribute('checked');
-  } else if (target.type === 'tips') {
-    isChecked.setAttribute('checked', true);
+  } else if (target.name === 'tips') {
+    items.forEach((item) => {
+      if (item === target) {
+        item.setAttribute('checked', true);
+      } else {
+        item.removeAttribute('checked');
+      }
+    });
   }
 });
 
 const getValuesFromForm = (form) => {
   const data = Object.fromEntries(new FormData(form));
-
+  console.log(data);
   Object.keys(data).forEach((key) => {
     if (!validateValue[key](data[key])) {
       throwError(key);
@@ -49,8 +56,13 @@ const getValuesFromForm = (form) => {
   return data;
 };
 
-const countTheBill = () => {
+const countTheBill = (e) => {
   const data = getValuesFromForm(form);
+
+  if (e.target.name === 'tips') {
+    custom.value = '';
+    delete data.custom;
+  }
 
   const isCustom = data.custom ? data.custom : data.tips;
 
