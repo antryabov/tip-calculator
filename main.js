@@ -55,6 +55,7 @@ const countTheBill = () => {
   const tips = (data.bill * (isCustom / 100)) / data.people;
   const sum = data.bill / data.people;
 
+
   if (!isFinite(tips) && !isFinite(sum)) return;
 
   tipAmount.textContent = `$${tips.toFixed(2)}`;
