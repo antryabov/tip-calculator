@@ -4,8 +4,7 @@ const custom = document.getElementById('custom');
 const list = document.getElementById('radio-list');
 const tipAmount = document.getElementById('tip-amount');
 const total = document.getElementById('total');
-
-let isCustomField = false;
+const inputs = document.querySelectorAll('input');
 
 const validateValue = {
   bill: (value) => !!Number(value.trim()),
@@ -19,46 +18,49 @@ const throwError = (key) => {
   element.textContent = 'Can’t be zero';
 };
 
+const successInput = (key) => {
+  const element = document.getElementById(`${key}-error`);
+  element.textContent = '';
+};
+
 list.addEventListener('click', (e) => {
   const target = e.target;
-  if (target === custom) {
-    list.querySelector('input:checked').removeAttribute('checked');
-    isCustomField = true;
-  } else {
-    isCustomField = false;
+  const isChecked = list.querySelector('input:checked');
+  if (target === custom && isChecked) {
+    isChecked.removeAttribute('checked');
+  } else if (target.type === 'tips') {
+    isChecked.setAttribute('checked', true);
   }
 });
 
 const getValuesFromForm = (form) => {
   const data = Object.fromEntries(new FormData(form));
 
-  if (isCustomField) {
-    delete data.tips;
-  } else {
-    delete data.custom;
-  }
-
   Object.keys(data).forEach((key) => {
     if (!validateValue[key](data[key])) {
       throwError(key);
+    } else {
+      successInput(key);
     }
   });
 
   return data;
 };
 
-people.addEventListener('change', () => {
+const countTheBill = () => {
   const data = getValuesFromForm(form);
 
-  const isCustom = !!data.custom ? data.custom : data.tips;
+  const isCustom = data.custom ? data.custom : data.tips;
 
   const tips = (data.bill * (isCustom / 100)) / data.people;
   const sum = data.bill / data.people;
 
-  if (!tips && !sum) {
-    return;
-  }
+  if (!isFinite(tips) && !isFinite(sum)) return;
 
   tipAmount.textContent = `$${tips.toFixed(2)}`;
   total.textContent = `$${sum.toFixed(2)}`;
+};
+
+inputs.forEach((input) => {
+  input.addEventListener('change', countTheBill);
 });
