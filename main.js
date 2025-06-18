@@ -2,6 +2,8 @@ const form = document.getElementById('form');
 const people = document.getElementById('people');
 const custom = document.getElementById('custom');
 const list = document.getElementById('radio-list');
+const tipAmount = document.getElementById('tip-amount');
+const total = document.getElementById('total');
 
 let isCustomField = false;
 
@@ -47,8 +49,7 @@ const getValuesFromForm = (form) => {
 
 people.addEventListener('change', () => {
   const data = getValuesFromForm(form);
-  const tipAmount = document.getElementById('tip-amount');
-  const total = document.getElementById('total');
+
   const isCustom = !!data.custom ? data.custom : data.tips;
 
   const tips = (data.bill * (isCustom / 100)) / data.people;
