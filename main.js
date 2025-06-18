@@ -14,11 +14,13 @@ const validateValue = {
 };
 
 const throwError = (key) => {
+  if (key === 'custom') return true;
   const element = document.getElementById(`${key}-error`);
   element.textContent = 'Can’t be zero';
 };
 
 const successInput = (key) => {
+  if (key === 'custom') return true;
   const element = document.getElementById(`${key}-error`);
   element.textContent = '';
 };
@@ -58,7 +60,7 @@ const countTheBill = () => {
   if (!isFinite(tips) && !isFinite(sum)) return;
 
   tipAmount.textContent = `$${tips.toFixed(2)}`;
-  total.textContent = `$${sum.toFixed(2)}`;
+  total.textContent = `$${(sum + tips).toFixed(2)}`;
 };
 
 inputs.forEach((input) => {
