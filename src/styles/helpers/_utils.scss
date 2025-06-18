@@ -1,0 +1,21 @@
+@use './mixins' as *;
+
+.container {
+  --padding-content: clamp(2rem, -0.8169rem + 12.0188vw, 10rem);
+  --content-max-width: clamp(42.5rem, 11.0714rem + 65.4762vw, 70rem); // 1120 to 680 px tablet
+
+  width: 100%;
+  max-width: calc(var(--content-max-width) + var(--padding-content) * 2);
+  padding-inline: var(--padding-content);
+  margin-inline: auto;
+}
+
+@media (max-width: 48rem) {
+  .container {
+    --content-max-width: clamp(19.4375rem, -2.5687rem + 93.8931vw, 42.5rem); // 680 to 311 px mobile
+  }
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}

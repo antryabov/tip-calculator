@@ -1,0 +1,55 @@
+@mixin hover {
+  @media (any-hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+
+  @media (any-hover: none) {
+    &:active {
+      @content;
+    }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-content: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin overflow-detection {
+  * {
+    --out-width: 2px;
+    outline: var(--out-width) solid red;
+    outline-offset: calc(0px - var(--out-width));
+    &::before,
+    &::after {
+      outline: var(--out-width) solid lime;
+      outline-offset: calc(0px - var(--out-width));
+    }
+  }
+}
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

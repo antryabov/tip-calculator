@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./src/assets/images/favicon-32x32.png" />
+    <title>Frontend Mentor | Tip calculator app</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="./main.js" defer></script>
+  </head>
+  <body>
+    <main class="main">
+      <img src="./src/assets/images/logo.svg" alt="Splitter logo" width="87" height="53" />
+      <section class="bill">
+        <form class="bill__form form" id="form">
+          <div class="form__input-wrapper">
+            <div class="form__label-info">
+              <label for="bill" class="form__label">Bill</label>
+              <span aria-live="polite" id="bill-error" class="form__message"></span>
+            </div>
+            <div class="icon-wrapper">
+              <img class="form__input-icon" src="./src/assets/images/icon-dollar.svg" alt="" width="10" height="16" />
+              <input dir="rtl" type="text" id="bill" name="bill" class="form__input" placeholder="0" />
+            </div>
+          </div>
+          <div class="form__radio-wrapper">
+            <div class="form__label-info">
+              <label for="tips" class="form__label">Select Tip %</label>
+              <span aria-live="polite" id="tips-error" class="form__message"></span>
+            </div>
+            <ul class="form__radio-list" id="radio-list">
+              <li class="form__radio-item">
+                <input class="form__radio-input" type="radio" id="5" name="tips" value="5" />
+                <label class="form__radio-label" for="5">5%</label>
+              </li>
+              <li class="form__radio-item">
+                <input class="form__radio-input" type="radio" id="10" name="tips" value="10" />
+                <label class="form__radio-label" for="10">10%</label>
+              </li>
+              <li class="form__radio-item">
+                <input class="form__radio-input" type="radio" id="15" name="tips" value="15" checked />
+                <label class="form__radio-label" for="15">15%</label>
+              </li>
+              <li class="form__radio-item">
+                <input class="form__radio-input" type="radio" id="25" name="tips" value="25" />
+                <label class="form__radio-label" for="25">25%</label>
+              </li>
+              <li class="form__radio-item">
+                <input class="form__radio-input" type="radio" id="50" name="tips" value="50" />
+                <label class="form__radio-label" for="50">50%</label>
+              </li>
+              <li class="form__radio-item">
+                <input type="text" name="custom" id="custom" placeholder="Custom" class="form__input" placeholder="0" />
+              </li>
+            </ul>
+          </div>
+          <div class="form__input-wrapper">
+            <div class="form__label-info">
+              <label for="people" class="form__label">Number of People</label>
+              <span aria-live="polite" id="people-error" class="form__message"></span>
+            </div>
+            <div class="icon-wrapper">
+              <img class="form__input-icon" src="./src/assets/images/icon-person.svg" alt="" width="13" height="16" />
+              <input dir="rtl" type="text" name="people" id="people" class="form__input" placeholder="0" />
+            </div>
+          </div>
+        </form>
+        <div class="bill__result">
+          <div class="bill__row">
+            <div class="bill__name">
+              <p class="bill__label">Tip Amount</p>
+              <span class="bill__additional-label">/ person</span>
+            </div>
+            <div class="bill__total">
+              <p class="bill__total-text" id="tip-amount">$0.00</p>
+            </div>
+          </div>
+          <div class="bill__row">
+            <div class="bill__name">
+              <p class="bill__label">Total</p>
+              <span class="bill__additional-label">/ person</span>
+            </div>
+            <div class="bill__total">
+              <p class="bill__total-text" id="total">$0.00</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

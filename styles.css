@@ -1,0 +1,324 @@
+@font-face {
+  font-family: "Space Mono";
+  src: url("./src/assets/fonts/SpaceMono-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+.container {
+  --padding-content: clamp(2rem, -0.8169rem + 12.0188vw, 10rem);
+  --content-max-width: clamp(42.5rem, 11.0714rem + 65.4762vw, 70rem);
+  width: 100%;
+  max-width: calc(var(--content-max-width) + var(--padding-content) * 2);
+  padding-inline: var(--padding-content);
+  margin-inline: auto;
+}
+
+@media (max-width: 48rem) {
+  .container {
+    --content-max-width: clamp(19.4375rem, -2.5687rem + 93.8931vw, 42.5rem);
+  }
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+  }
+}
+body {
+  /* 4. Add accessible line-height */
+  line-height: 1.5;
+  /* 5. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+:root {
+  --white: hsl(0, 0%, 100%);
+  --green-400: hsl(172, 67%, 45%);
+  --green-200: hsl(173, 61%, 77%);
+  --green-900: hsl(183, 100%, 15%);
+  --grey-500: hsl(186, 14%, 43%);
+  --grey-550: hsl(180, 18%, 40%);
+  --grey-400: hsl(184, 14%, 56%);
+  --grey-200: hsl(185, 41%, 84%);
+  --grey-50: hsl(189, 47%, 97%);
+  --orange-400: hsl(13, 70%, 60%);
+  --font-family-base: "Space Mono";
+  --font-size-xl: clamp(2rem, 1.6479rem + 1.5023vw, 3rem);
+  --font-size-l: 1.5rem;
+  --font-size-m: 1.25rem;
+  --font-size-s: 1rem;
+  --font-size-xs: 0.8125rem;
+  --line-height-xxl: 4.4375rem;
+  --line-height-xl: 2.9375rem;
+  --line-height-l: 2.25rem;
+  --line-height-m: 1.875rem;
+  --line-height-s: 1.5rem;
+  --line-height-xs: 1.1875rem;
+  --letter-spacing-m: -1px;
+  --letter-spacing-s: -0.67px;
+  --border-radius-card: 0.9375rem;
+  --border-radius-sum: 0.9375rem;
+  --border-radius-tips: 0.3125rem;
+  --transition-duration: 0.2s;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-l);
+  font-weight: 700;
+  color: var(--grey-500);
+  background-color: var(--grey-200);
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-inline: clamp(0rem, -5.7218rem + 24.4131vw, 16.25rem);
+  flex-direction: column;
+  gap: 5.4375rem;
+}
+
+.bill {
+  --padding-inline-card: 2.5rem;
+  --padding-block-card: 2rem;
+  max-width: 57.5rem;
+  padding-inline: var(--padding-inline-card);
+  padding-block: var(--padding-block-card);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 1.6479rem + 1.5023vw, 3rem);
+  background-color: var(--white);
+  border-radius: var(--border-radius-card);
+}
+.bill .form {
+  --gap: clamp(1.5rem, 0.3571rem + 2.381vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+.bill .form .form__input {
+  width: 100%;
+  height: 3rem;
+  background-color: var(--grey-50);
+  border: none;
+  border-radius: var(--border-radius-tips);
+}
+.bill .form__label-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-s);
+  line-height: var(--line-height-s);
+  padding-bottom: 0.5rem;
+}
+.bill .form__message {
+  color: var(--orange-400);
+}
+.bill .form__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.bill .form__input-wrapper .icon-wrapper > input {
+  padding-inline-start: 1.0625rem;
+}
+.bill .form__radio-list {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+  list-style-type: none;
+}
+.bill .form__radio-item {
+  position: relative;
+  max-width: 7.25rem;
+  height: 3rem;
+  color: var(--white);
+}
+.bill .form__radio-item .form__radio-input {
+  opacity: 0.01;
+  z-index: 100;
+}
+.bill .form__radio-item .form__radio-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-tips);
+  cursor: pointer;
+}
+.bill .form__radio-item .form__radio-input[type=radio] + .form__radio-label {
+  background: var(--green-900);
+}
+.bill .form__radio-item .form__radio-input[type=radio]:checked + .form__radio-label {
+  background: var(--green-200);
+  color: var(--green-900);
+}
+.bill .form__radio-item .form__input {
+  width: 100%;
+  height: 100%;
+  padding-inline-start: 0.75rem;
+  background-color: var(--grey-50);
+  border: 0;
+}
+.bill .form__input-icon {
+  position: absolute;
+  display: flex;
+  left: 1.125rem;
+  bottom: 0.825rem;
+}
+.bill__result {
+  --padding-block-sum: 3.5625rem;
+  --padding-inline-sum: 2.375rem;
+  --width-sum: 25.8125rem;
+  display: flex;
+  flex-direction: column;
+  max-width: var(--width-sum);
+  padding-inline: var(--padding-inline-sum);
+  padding-block: var(--padding-block-sum);
+  gap: 1.375rem;
+  background-color: var(--green-900);
+  border-radius: var(--border-radius-sum);
+}
+.bill__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bill__name {
+  display: flex;
+  flex-direction: column;
+}
+.bill__label {
+  font-size: var(--font-size-s);
+  color: var(--white);
+}
+.bill__additional-label {
+  font-size: var(--font-size-xs);
+  color: var(--grey-400);
+}
+.bill__total-text {
+  font-size: var(--font-size-xl);
+  color: var(--green-400);
+}
+
+@media (max-width: 72.5rem) {
+  .bill {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 48rem) {
+  .main {
+    gap: 2.8125rem;
+  }
+  .bill {
+    --padding-inline-card: clamp(2rem, -0.5644rem + 10.9415vw, 4.6875rem);
+    --padding-block-card: clamp(2.125rem, 0.9323rem + 5.0891vw, 3.375rem);
+  }
+  .bill .form {
+    --gap: clamp(2rem, 1.4286rem + 1.1905vw, 2.5rem);
+  }
+  .bill__result {
+    --padding-inline-sum: clamp(1.6875rem, 0.4351rem + 5.3435vw, 3rem);
+    --padding-block-sum: clamp(2rem, 0.5091rem + 6.3613vw, 3.5625rem);
+  }
+}
+@media (max-width: 35.5rem) {
+  .bill .form__radio-list {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    justify-content: stretch;
+  }
+  .bill .form__radio-item {
+    max-width: 100%;
+  }
+}
+@media (max-width: 26.25rem) {
+  .main {
+    padding-top: 3.125rem;
+  }
+  .bill {
+    height: 100dvh;
+    border-radius: 0px;
+  }
+}

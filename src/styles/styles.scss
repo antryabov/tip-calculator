@@ -1,0 +1,216 @@
+@use './helpers/' as *;
+@use './variables' as *;
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-l);
+  font-weight: 700;
+  color: var(--grey-500);
+  background-color: var(--grey-200);
+}
+
+.main {
+  @include flex-center;
+
+  height: 100vh;
+  padding-inline: clamp(0rem, -5.7218rem + 24.4131vw, 16.25rem);
+  flex-direction: column;
+  gap: 5.4375rem;
+}
+
+.bill {
+  --padding-inline-card: 2.5rem;
+  --padding-block-card: 2rem;
+
+  max-width: 57.5rem;
+  padding-inline: var(--padding-inline-card);
+  padding-block: var(--padding-block-card);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(2rem, 1.6479rem + 1.5023vw, 3rem);
+  background-color: var(--white);
+  border-radius: var(--border-radius-card);
+
+  .form {
+    --gap: clamp(1.5rem, 0.3571rem + 2.381vw, 2.5rem);
+
+    @include flex-column;
+
+    gap: var(--gap);
+
+    .form__input {
+      width: 100%;
+      height: 3rem;
+      background-color: var(--grey-50);
+      border: none;
+      border-radius: var(--border-radius-tips);
+    }
+
+    &__label-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: var(--font-size-s);
+      line-height: var(--line-height-s);
+      padding-bottom: 0.5rem;
+    }
+
+    &__message {
+      color: var(--orange-400);
+    }
+
+    &__input-wrapper {
+      @include flex-column;
+
+      position: relative;
+
+      .icon-wrapper > input {
+        padding-inline-start: 1.0625rem;
+      }
+    }
+
+    &__radio-list {
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 1rem;
+      list-style-type: none;
+    }
+
+    &__radio-item {
+      position: relative;
+      max-width: 7.25rem;
+      height: 3rem;
+      color: var(--white);
+
+      & .form__radio-input {
+        opacity: 0.01;
+        z-index: 100;
+      }
+
+      & .form__radio-label {
+        @include flex-center;
+        position: absolute;
+        inset: 0;
+        border-radius: var(--border-radius-tips);
+        cursor: pointer;
+      }
+
+      & .form__radio-input[type='radio'] + .form__radio-label {
+        background: var(--green-900);
+      }
+
+      & .form__radio-input[type='radio']:checked + .form__radio-label {
+        background: var(--green-200);
+        color: var(--green-900);
+      }
+
+      & .form__input {
+        width: 100%;
+        height: 100%;
+        padding-inline-start: 0.75rem;
+        background-color: var(--grey-50);
+        border: 0;
+      }
+    }
+
+    &__input-icon {
+      position: absolute;
+      display: flex;
+      left: 1.125rem;
+      bottom: 0.825rem;
+    }
+  }
+
+  &__result {
+    --padding-block-sum: 3.5625rem;
+    --padding-inline-sum: 2.375rem;
+    --width-sum: 25.8125rem;
+
+    @include flex-column;
+
+    max-width: var(--width-sum);
+    padding-inline: var(--padding-inline-sum);
+    padding-block: var(--padding-block-sum);
+    gap: 1.375rem;
+    background-color: var(--green-900);
+    border-radius: var(--border-radius-sum);
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__name {
+    @include flex-column;
+  }
+
+  &__label {
+    font-size: var(--font-size-s);
+    color: var(--white);
+  }
+
+  &__additional-label {
+    font-size: var(--font-size-xs);
+    color: var(--grey-400);
+  }
+
+  &__total-text {
+    font-size: var(--font-size-xl);
+    color: var(--green-400);
+  }
+}
+
+@media (max-width: 72.5rem) {
+  .bill {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 48rem) {
+  .main {
+    gap: 2.8125rem;
+  }
+
+  .bill {
+    --padding-inline-card: clamp(2rem, -0.5644rem + 10.9415vw, 4.6875rem);
+    --padding-block-card: clamp(2.125rem, 0.9323rem + 5.0891vw, 3.375rem);
+
+    .form {
+      --gap: clamp(2rem, 1.4286rem + 1.1905vw, 2.5rem);
+    }
+
+    &__result {
+      --padding-inline-sum: clamp(1.6875rem, 0.4351rem + 5.3435vw, 3rem);
+      --padding-block-sum: clamp(2rem, 0.5091rem + 6.3613vw, 3.5625rem);
+    }
+  }
+}
+
+@media (max-width: 35.5rem) {
+  .bill {
+    .form {
+      &__radio-list {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        justify-content: stretch;
+      }
+
+      &__radio-item {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+@media (max-width: 26.25rem) {
+  .main {
+    padding-top: 3.125rem;
+  }
+  .bill {
+    height: 100dvh;
+    border-radius: 0px;
+  }
+}
